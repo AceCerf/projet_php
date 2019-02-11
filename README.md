@@ -12,8 +12,6 @@
 * git config --list
 ##### Recuperation du dossier
 * git clone https://github.com/AceCerf/projet_php.git
-##### Installation de sass
-* npm i -g sass (si nodejs installé)
 ## Outils de gestion de projet
 * https://www.notion.so/
 * https://slack.com
