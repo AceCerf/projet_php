@@ -48,13 +48,13 @@ require('class/GenerateForm.php');
                                     <a class="nav-link" href="#">Accueil</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Musique</a>
+                                    <a class="nav-link" href="detail.php?type=musique">Musique</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Videos</a>
+                                    <a class="nav-link" href="detail.php?type=video">Videos</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Images</a>
+                                    <a class="nav-link" href="detail.php?type=image">Images</a>
                                 </li>
 
                                 <?php 
@@ -98,6 +98,7 @@ require('class/GenerateForm.php');
                                 <form class="form-wrap mt-4">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <input type="text" placeholder="Que cherchez vous ?" class="btn-group1">
+                                        
                                         <input type="text" placeholder="Type" class="btn-group2">
                                         <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>Chercher<i class="pe-7s-angle-right"></i></button>
                                     </div>
@@ -128,35 +129,35 @@ require('class/GenerateForm.php');
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                            <figure class="effect-ruby">
+                            <a href="detail.php?type=musique"><figure class="effect-ruby">
                                 <img src="images/music.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Musique</h5>
                                 </figcaption>
-                            </figure>
+                            </figure></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                            <figure class="effect-ruby">
+                        <a href="detail.php?type=image"><figure class="effect-ruby">
                                 <img src="images/image.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Images</h5>
                                 </figcaption>
-                            </figure>
+                            </figure></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                            <figure class="effect-ruby">
+                        <a href="detail.php?type=video"><figure class="effect-ruby">
                                 <img src="images/video.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Videos</h5>
-                                </figcaption>
+                                </figcaption></a>
                             </figure>
                         </div>
                     </div>

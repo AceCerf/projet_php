@@ -53,13 +53,13 @@ require('autoload.php');
                                     <a class="nav-link" href="#">Accueil</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Musique</a>
+                                    <a class="nav-link" href="detail.php?type=musique">Musique</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Videos</a>
+                                    <a class="nav-link" href="detail.php?type=video">Videos</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Images</a>
+                                    <a class="nav-link" href="detail.php?type=image">Images</a>
                                 </li>
 
                                 <?php 
