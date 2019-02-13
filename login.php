@@ -64,43 +64,51 @@ catch(Exception $e) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-  <head>
-
+<html>
+<head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Login</title>
-
-    
-
-  </head>
+    <meta name="author" content="Colorlib">
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <!-- Page Title -->
+    <title> Connexion</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <!-- Simple line Icon -->
+    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <!-- Themify Icon -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Hover Effects -->
+    <link rel="stylesheet" href="css/set1.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
   <body class="bg-dark">
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <div class="card-header">Connexion</div>
         <div class="card-body">
           <form action="" method="post" id="formLogin" >
             <div class="form-group">
               <div class="form-label-group">
                 <input type="username" name="login"  id="inputUsername" placeholder="Nom d'utilisateur" required="required" autofocus="autofocus">
-                <label for="inputUsername">Nom d'utilisateur</label>
+                
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
                 <input type="password"  name="pass" id="inputPassword" placeholder="Mot de passe" required="required">
-                <label for="inputPassword">Mot de passe</label>
+                
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="javascript:{}" onclick="document.getElementById('formLogin').submit();">Login</a>
+            <a class="btn btn-danger" href="javascript:{}" onclick="document.getElementById('formLogin').submit();">Se connecter</a>
           </form>
           <?php 
                 if (!empty($msg)){
@@ -114,6 +122,7 @@ catch(Exception $e) {
       </div>
     </div>
 
+   
     
 
   </body>
