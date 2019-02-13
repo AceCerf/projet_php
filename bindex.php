@@ -61,7 +61,7 @@ require('class/GenerateForm.php');
                                 //Vérification de session ouverte
                                 if (isset($_SESSION["login"])){
                                     printf('<li class="nav-item active">
-                                            <a class="nav-link" href="#">Ajouter</a>
+                                            <a class="nav-link" href="ajoutFichier.php">Ajouter</a>
                                             </li>');
                                     printf('<li><a href="logout.php" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Se  déconnecter<a></li>');                                
                                 }
@@ -95,16 +95,20 @@ require('class/GenerateForm.php');
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
-                                <form class="form-wrap mt-4">
+                                <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <input type="text" placeholder="Que cherchez vous ?" class="btn-group1">
-                                        
-                                        <input type="text" placeholder="Type" class="btn-group2">
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>Chercher<i class="pe-7s-angle-right"></i></button>
+                                        <select class="btn-group1" name="type" placeholder="Type" value="Type">
+                                            <option selected>Type de fichier...</option>
+                                            <option value="musique" >Musique</option>
+                                            <option value="video" >Vidéos</option>
+                                            <option value="image">Images</option>
+                                        </select> 
+                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span> Chercher<i class="pe-7s-angle-right"></i></button>
                                     </div>
-                                </form>
+                                </form> 
                                 <div class="slider-link">
-                                    <a href="#">Derniers ajouts</a>
+                                    <a href="detail.php?rank=last">Derniers ajouts</a>
                                 </div>
                             </div>
                         </div>
