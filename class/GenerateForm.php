@@ -6,43 +6,37 @@
 class GenerateForm {
 
     private $data;
-    public $surround = 'p';
     private $type = ['Image', 'Audio', 'Vidéo'];
 
     public function __construct($data = array()) {
         $this->data = $data;
     }
 
-    private function surround($html) {
-        return "<{$this->surround}>$html<{$this->surround}>\n";
+    private function getValue($index) {
+        return isset($this->data[$index]) ? $this->data[$index] : null ; 
     }
 
-    private function getValue($index) {
-        return isset($this->data[$index]) ? $this->data[$index] : null;
+    
+    public function label($name, $className) {
+        printf ("<label class='%s'> %s </label>", $className, $name) ;
     }
     
-    public function inputText($name) {
-        return $this->surround(
-            "<label>". $name . " : </label><input type='text' name='" . $name . "' value='" . $this->getValue($name) . "'>"
-        );    
+    public function inputText($name, $className) {
+        printf ("<input class='%s' type='text' placeholder='%s' name='%s' value='%s'>", $className, $name, $name, $this->getValue($name)) ;
     }
 
-    public function inputPass() {
-        return $this->surround(
-            "<label>Mot de Passe : </label><input type='password' name='password' value=''>"
-        );    
+    public function inputPass($className) {
+        printf ("<input class='%s' type='password' name='password' value=''>", $className) ;    
     }
 
-    public function inputTextArea($name) {
-        return $this->surround(
-            "<label>". $name . " : </label><textarea cols='40' rows='5' name='" . $name . "' value='" . $this->getValue($name) . "'></textarea>"
-        );    
+    public function inputTextArea($name, $className) {
+        printf ("<textarea cols='40' rows='1' name='%s' value='%s'></textarea>", $className, $name, $this->getValue($name)) ;    
     }
 
     public function select($type) {
-        echo "<label> Type : </label><select>\n";
+        echo "<select name='type' placeholder='Type' value='Type'>\n<option selected=''>Type de fichier...</option>\n";
         foreach($this->type as $typ) {
-            echo "  <option value='". $typ . "' name='" . $typ . "'>" . $typ . "</option>\n";
+            printf ("<option value='%s' name='%s'> %s </option>\n", $typ, $typ, $typ) ;
         };
         echo "</select>\n";
     }
@@ -56,11 +50,8 @@ class GenerateForm {
  * 
  * ou autre
  */
-    public function inputFile($typeUpload) {
-        return $this->surround(
-            "<label>Envoie de fichier :</label><input type='file' name='file' class='form-control-file' id='formEnvoieFichier' accept='".$typeUpload."'>\n"
-        );
-
+    public function inputFile($typeUpload, $className = "form-control-file") {
+        printf ("<input type='file' name='file' class='%s' id='formEnvoiFichier' accept='%s'>\n", $className, $typeUpload) ;
     }
 
 /**
@@ -69,26 +60,23 @@ class GenerateForm {
  * $value : nom de la value
  */
 
-    public function radio($nameRadio, $value){
-        return $this->surround(
-        "<input class='form-check-input' type='radio' name='".$nameRadio."' value='".$value."'>\n
-        <label class='form-check-label for='".$value."'>$value</label>\n"  
-        );
-
+    public function radio($nameRadio, $value, $className = "form-check-input" ){
+        printf ("<input class='%s' type='radio' name='%s' value='%s'>\n
+        <label class='form-check-label for='%s'>%s</label>\n", $className, $nameRadio, $value, $value, $value) ;
     }
 
 /**
  * Bouton submit
  */
-    public function submit() {
-        echo "<button type='submit' name='Envoyer'>Envoyer</button>";
+    public function submit($className = "btn-form", $spanClassName = "icon-magnifier search-icon") {
+        printf ("<button class='%s' type='submit' name='Envoyer'><span class='%s'></span> Chercher<i class='pe-7s-angle-right'></i></button>", $className, $spanClassName);
     }
     
 }
 
 
-/*
 
+/*
 //Test ---------------------------------------------
 
 $form = new GenerateForm();
@@ -109,5 +97,5 @@ $form = new GenerateForm();
        
     ?>    
     </form>
-
+*/
    

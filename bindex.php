@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('autoload.php');
-require('class/GenerateForm.php');
 //$_SESSION['login'] = "Bob";
 ?>
 
@@ -94,17 +93,16 @@ require('class/GenerateForm.php');
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="Que cherchez vous ?" class="btn-group1">
-                                        <select class="btn-group1" name="type" placeholder="Type" value="Type">
-                                            <option selected>Type de fichier...</option>
-                                            <option value="musique" >Musique</option>
-                                            <option value="video" >Vidéos</option>
-                                            <option value="image">Images</option>
-                                        </select> 
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span> Chercher<i class="pe-7s-angle-right"></i></button>
+                                        <?php
+                                            $form = new GenerateForm();
+                                            $form->inputText('Auteur', 'btn-group1');
+                                            $form->select('Type', 'btn-group1');
+                                            $form->inputTextArea('Description', 'btn-group1');
+                                            $form->submit();
+                                        ?>
                                     </div>
                                 </form> 
                                 <div class="slider-link">
