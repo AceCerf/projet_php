@@ -85,8 +85,8 @@ class GenerateForm {
     }
     
 }
-/*
 
+/*
 //Test ---------------------------------------------
 
 $form = new GenerateForm();
@@ -108,4 +108,4 @@ $form = new GenerateForm();
     ?>    
     </form>
 
-    */
+   
