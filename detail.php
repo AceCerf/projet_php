@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('autoload.php');
-//$_SESSION['login'] = "Bob";
+$_SESSION['login'] = "Bob";
 ?>
 
 <html lang="en">
@@ -43,14 +43,14 @@ require('autoload.php');
             <div class="row">
                 <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="index.html">Médiathèque</a>
+                            <a class="navbar-brand" href="bindex.php">Médiathèque</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-menu"></span>
                             </button>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Accueil</a>
+                                    <a class="nav-link" href="bindex.php">Accueil</a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="detail.php?type=musique">Musique</a>
@@ -66,7 +66,7 @@ require('autoload.php');
                                 //Vérification de session ouverte
                                 if (isset($_SESSION["login"])){
                                     printf('<li class="nav-item active">
-                                            <a class="nav-link" href="#">Ajouter</a>
+                                            <a class="nav-link" href="ajouterFichier.php">Ajouter</a>
                                             </li>');
                                     printf('<li><a href="logout.php" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Se  déconnecter<a></li>');                                
                                 }
@@ -126,11 +126,37 @@ require('autoload.php');
                 </div>
                 
             </div>
+            
         </div>
     </section>
     <!--//END BOOKING DETAILS -->
-    <!--============================= ADD LISTING =============================-->
     <div class="reserve-block light-bg"></div>
+    <div class="reserve-block light-bg"></div>
+                                  
+    <div class="row d-flex justify-content-center">
+        
+            
+                <div class="col-md-10">
+                    <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <input type="text" placeholder="Nouvelle recherche" class="btn-group1">
+                            <select class="btn-group1" name="type" placeholder="Type" value="Type">
+                                <option selected>Type de fichier...</option>
+                                <option value="musique" >Musique</option>
+                                <option value="video" >Vidéos</option>
+                                <option value="image">Images</option>
+                            </select> 
+                            <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span> Chercher<i class="pe-7s-angle-right"></i></button>
+                        </div>
+                    </form> 
+                    
+                </div>
+            
+        </div>
+
+
+    <!--============================= ADD LISTING =============================-->
+    
     <section class="main-block light-bg">
         <div class="container">
 
