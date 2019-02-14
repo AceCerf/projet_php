@@ -22,15 +22,15 @@ class GenerateForm {
     }
     
     public function inputText($name, $className) {
-        printf ("<input class='%s' type='text' placeholder='%s' name='%s' value='%s'>", $className, $name, $name, $this->getValue($name)) ;
+        printf ("<input class='%s' type='text' placeholder='%s' name='%s' value='%s' required>", $className, $name, $name, $this->getValue($name)) ;
     }
 
     public function inputPass($className) {
-        printf ("<input class='%s' type='password' name='password' value=''>", $className) ;    
+        printf ("<input class='%s' type='password' name='password' value='' required>", $className) ;    
     }
 
     public function inputTextArea($name, $className) {
-        printf ("<textarea cols='40' rows='1' name='%s' value='%s'></textarea>", $className, $name, $this->getValue($name)) ;    
+        printf ("<textarea cols='40' rows='1' name='%s' value='%s' required></textarea>", $className, $name, $this->getValue($name)) ;    
     }
 
     public function select($type) {
@@ -51,7 +51,7 @@ class GenerateForm {
  * ou autre
  */
     public function inputFile($typeUpload, $className = "form-control-file") {
-        printf ("<input type='file' name='file' class='%s' id='formEnvoiFichier' accept='%s'>\n", $className, $typeUpload) ;
+        printf ("<input type='file' name='file' class='%s' id='formEnvoiFichier' accept='%s' required>\n", $className, $typeUpload) ;
     }
 
 /**
@@ -69,7 +69,7 @@ class GenerateForm {
  * Bouton submit
  */
     public function submit($className = "btn-form", $spanClassName = "icon-magnifier search-icon") {
-        printf ("<button class='%s' type='submit' name='Envoyer'><span class='%s'></span> Chercher<i class='pe-7s-angle-right'></i></button>", $className, $spanClassName);
+        printf ("<button class='%s' type='submit' name='Envoyer'><span class='%s'></span> Valider<i class='pe-7s-angle-right'></i></button>", $className, $spanClassName);
     }
     
 }
