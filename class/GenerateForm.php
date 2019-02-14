@@ -13,34 +13,32 @@ class GenerateForm {
         $this->data = $data;
     }
 
-    private function surround($html) {
-        return "<{$this->surround}>$html<{$this->surround}>\n";
-    }
+    
 
     private function getValue($index) {
         return isset($this->data[$index]) ? $this->data[$index] : null;
     }
     
     public function inputText($name) {
-        return $this->surround(
+        return (
             "<label>". $name . " : </label><input type='text' name='" . $name . "' value='" . $this->getValue($name) . "'>"
         );    
     }
 
     public function inputPass() {
-        return $this->surround(
+        return (
             "<label>Mot de Passe : </label><input type='password' name='password' value=''>"
         );    
     }
 
     public function inputTextArea($name) {
-        return $this->surround(
+        return (
             "<label>". $name . " : </label><textarea cols='40' rows='5' name='" . $name . "' value='" . $this->getValue($name) . "'></textarea>"
         );    
     }
 
     public function select($type) {
-        echo "<label> Type : </label><select>\n";
+        echo "<label> Type : </label><select name='type'>\n";
         foreach($this->type as $typ) {
             echo "  <option value='". $typ . "'>" . $typ . "</option>\n";
         };
@@ -57,8 +55,8 @@ class GenerateForm {
  * ou autre
  */
     public function inputFile($typeUpload) {
-        return $this->surround(
-            "<label>Envoie de fichier :</label><input type='file' class='form-control-file' id='formEnvoieFichier' accept='".$typeUpload."'>\n"
+        return (
+            "<label>Envoie de fichier :</label><input type='file' name='file' class='form-control-file' id='formEnvoieFichier' accept='".$typeUpload."'>\n"
         );
 
     }
@@ -70,7 +68,7 @@ class GenerateForm {
  */
 
     public function radio($nameRadio, $value){
-        return $this->surround(
+        return (
         "<input class='form-check-input' type='radio' name='".$nameRadio."' value='".$value."'>\n
         <label class='form-check-label for='".$value."'>$value</label>\n"  
         );
