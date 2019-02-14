@@ -93,14 +93,13 @@ require('autoload.php');
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
-                            <div class="col-md-12">
-                                <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
+                            <div class="col-md-10">
+                                <form class="form-wrap mt-4 " action="detail.php" method="GET">                                   
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <?php
                                             $form = new GenerateForm();
-                                            $form->inputText('Auteur', 'btn-group1');
-                                            $form->select('Type', 'btn-group1');
-                                            $form->inputTextArea('Description', 'btn-group1');
+                                            $form->inputText('Mots Clés', 'btn-group1');
+                                            $form->select('Type', 'btn-group2');
                                             $form->submit();
                                         ?>
                                     </div>

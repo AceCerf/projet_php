@@ -80,7 +80,7 @@ class GenerateForm {
 //Test ---------------------------------------------
 
 $form = new GenerateForm();
-?>
+
 
 <form action="" method="GET">
     <?php

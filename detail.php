@@ -141,9 +141,8 @@ $_SESSION['login'] = "Bob";
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <?php
                             $form = new GenerateForm();
-                            $form->inputText('Auteur', 'btn-group1');
+                            $form->inputText('Nouvelle Recherche', 'btn-group1');
                             $form->select('Type', 'btn-group1');
-                            $form->inputTextArea('Description', 'btn-group1');
                             $form->submit();
             ?>
                         </div>
@@ -166,7 +165,7 @@ $_SESSION['login'] = "Bob";
                 printf('<div class="row">    
                 <div class="col-md-12">
                     <div class="add-listing-wrap">
-                        <h2>Vous etes connecté en tant que %s</h2>
+                        <h4>Vous etes connecté en tant que %s</h4>
                         <p>Ajoutez des documents à la base</p>
                     </div>
                 </div>
@@ -182,7 +181,7 @@ $_SESSION['login'] = "Bob";
                 printf('<div class="row">    
                 <div class="col-md-12">
                     <div class="add-listing-wrap">
-                        <h2>Espace membres</h2>
+                        <h4>Espace membres</h4>
                         <p>Vous devez être connecté pour ajouter des fichiers</p>
                     </div>
                 </div>
@@ -208,21 +207,14 @@ $_SESSION['login'] = "Bob";
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="copyright">
-                        
-                        <p>Copyright &copy; 2019 LDNR's students </p>
-                       
-                        
+                    <div class="copyright">                        
+                        <p>Copyright &copy; 2019 LDNR's students </p>          
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <!--//END FOOTER -->
-
-
-
-
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.2.1.min.js"></script>

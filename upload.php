@@ -21,7 +21,7 @@ $fileExt =  end($fileTab);
 if (!in_array($fileExt, $legalExtensions)) {
     //echo 'je suis la';
     $_SESSION['message'] = "Format non valide";
-    header('location:uploadForm.php');
+    header('location:ajouterFichier.php');
     die();
 } 
 
@@ -59,7 +59,7 @@ if (isset($_FILES)) {
 // Si pas bon fichier
 if ($url == null) {
     $_SESSION['message'] = "Veuillez recommencer, une erreur s'est produite !";
-    header('location:uploadForm.php');
+    header('location:ajouterFichier.php');
     die();
 }
 
@@ -78,7 +78,7 @@ if(isset($_FILES['file']) AND isset($url))
     if($taille>$taille_maxi)
     {
         $_SESSION['message'] = "Fichier trop volumineux";
-        header('location:uploadForm.php');
+        header('location:ajouterFichier.php');
     }
 
 
@@ -113,15 +113,15 @@ if(isset($_FILES['file']) AND isset($url))
             'aut' => $id,
             'date' => date('Y-m-d'),
             )); 
-            $_SESSION['message'] = "Upload effectué avec succès !";
-            header('location:uploadForm.php');      
+            $_SESSION['success'] = "Upload effectué avec succès !";
+            header('location:ajouterFichier.php');      
         }
         catch (Exception $e) {
             //echo 'Exception reçue : ',  $e->getMessage(), "\n";
             //die('Erreur : ' . $e->message());
             
             $_SESSION['message'] = "Erreur lors de l'envoi du fichier : " . $e->message();
-            header('location:uploadForm.php');
+            header('location:ajouterFichier.php');
             die();
         }
 } 
