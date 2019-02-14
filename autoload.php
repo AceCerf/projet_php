@@ -1,4 +1,4 @@
 <?php
 function __autoload($class) {
-  require_once('obj/'.$class.'.php');
+  require_once('class/'.$class.'.php');
 }
