@@ -42,7 +42,7 @@ class GenerateForm {
     public function select($type) {
         echo "<label> Type : </label><select>\n";
         foreach($this->type as $typ) {
-            echo "  <option value='". $typ . "'>" . $typ . "</option>\n";
+            echo "  <option value='". $typ . "' name='" . $typ . "'>" . $typ . "</option>\n";
         };
         echo "</select>\n";
     }
@@ -58,7 +58,7 @@ class GenerateForm {
  */
     public function inputFile($typeUpload) {
         return $this->surround(
-            "<label>Envoie de fichier :</label><input type='file' class='form-control-file' id='formEnvoieFichier' accept='".$typeUpload."'>\n"
+            "<label>Envoie de fichier :</label><input type='file' name='file' class='form-control-file' id='formEnvoieFichier' accept='".$typeUpload."'>\n"
         );
 
     }
@@ -81,12 +81,14 @@ class GenerateForm {
  * Bouton submit
  */
     public function submit() {
-        echo "<button type='submit'>Envoyer</button>";
+        echo "<button type='submit' name='Envoyer'>Envoyer</button>";
     }
     
 }
 
+
 /*
+
 //Test ---------------------------------------------
 
 $form = new GenerateForm();
