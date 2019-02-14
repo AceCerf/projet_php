@@ -13,6 +13,7 @@ catch(Exception $e) {
 }
 
 
+<<<<<<< HEAD
 
 //test
 
@@ -49,3 +50,16 @@ while ($donnees = $videoTest->fetch()) {
     echo "</video>";
 }
     $videoTest->closeCursor();
+=======
+/** 
+*test
+*
+*$reponse = $bdd->query('SELECT * FROM `datas` WHERE 1');
+*
+*while ($donnees = $reponse->fetch()){
+*echo $donnees['id']." : ".$donnees['chemin_relatif']." : ".$donnees['description']."<br/>";
+*}
+*
+*$reponse->closeCursor();
+*/
+>>>>>>> 14dabf23814aa48fa0544b5b353ff50f256be497
