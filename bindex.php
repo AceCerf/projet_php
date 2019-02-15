@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('autoload.php');
-//$_SESSION['login'] = "Bob";
+//$_SESSION['login'] = "Bastien";
 ?>
 
 <html>
@@ -60,7 +60,7 @@ require('autoload.php');
                                 //Vérification de session ouverte
                                 if (isset($_SESSION["login"])){
                                     printf('<li class="nav-item active">
-                                            <a class="nav-link" href="ajoutFichier.php">Ajouter</a>
+                                            <a class="nav-link" href="ajouterFichier.php">Ajouter</a>
                                             </li>');
                                     printf('<li><a href="logout.php" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Se  déconnecter<a></li>');                                
                                 }
@@ -204,7 +204,7 @@ require('autoload.php');
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="featured-btn-wrap">
-                        <a href="login.php" class="btn btn-danger"><span class="ti-plus"></span> se connecter</a>
+                        <a href=".php" class="btn btn-danger"><span class="ti-plus"></span> se connecter</a>
                     </div>
                 </div>
             </div>');                    

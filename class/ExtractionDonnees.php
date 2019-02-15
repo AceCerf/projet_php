@@ -1,5 +1,5 @@
 <?php
- class Extraction {
+class Extraction {
    private $table;
    private $find_fic=array();// attribut pour la sélection 
    
@@ -8,7 +8,6 @@
    {
      $this->table = $table;
      $this->find_fic=$find_fic;
-
    }
  
   public function postReqSelect($find_fic,$fields) 
@@ -16,14 +15,13 @@
   
  // $fields doit être un array
    $fields = implode(',', $fields);//les différents champs qu'on veut récuperer
-   $sql = $bdd->prepare("SELECT $fields FROM $this->table WHERE nom_fic= ?")
-   $sql = $bdd-> execute(array($_POST['$find_fic']))
+   $sql = $bdd->prepare("SELECT $fields FROM $this->table WHERE nom_fic= ?");
+   $sql = $bdd-> execute(array($_POST['$find_fic']));
 
- 
  
    // Traitement des données de la requête
 
-   $tab=array();ok
+   $tab=array();
 
    while ($donnee =$sql->fetch()) 
    {

@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('autoload.php');
-$_SESSION['login'] = "Bob";
 ?>
 
 <html lang="en">

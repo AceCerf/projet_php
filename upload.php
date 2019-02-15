@@ -79,18 +79,28 @@ if(isset($_FILES['file']) AND isset($url))
     {
         $_SESSION['message'] = "Fichier trop volumineux";
         header('location:ajouterFichier.php');
+        die();
     }
 
 
     // On vérifie le nom du fichier
+    $fichier = htmlspecialchars($fichier);
     $fichier = strtr($fichier,
     'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
     'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy'); 
     //On remplace les lettres accentutées par les non accentuées dans $fichier.      
     //expression régulière qui remplace tout ce qui n'est pas une lettre non accentuées ou un chiffre
-    //dans $fichier par un tiret "-" et qui place le résultat dans $fichier.
-    $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);     
+    //dans $fichier par un tiret "-" et qui place le résultat dans $fichier.    
+    $fichier = preg_replace('/([^.a-z0-9-_]+)/i', '-', $fichier);   
+
     
+    //Vérifier si le fichier n'est pas déjà présent
+    if (file_exists($url.$fichier)) {
+        $_SESSION['message'] = "Fichier déjà présent sur le serveur";
+        header('location:ajouterFichier.php');
+        die();
+    }   
+
 
 
     if(move_uploaded_file($_FILES['file']['tmp_name'], $url . $fichier)) 
