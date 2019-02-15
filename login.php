@@ -1,70 +1,58 @@
 <?php
-require('validateurValeurs.php');
-require('class/GenerateForm.php');
-
-session_start();
-
-//TEST
-//$_SESSION['login'] = 'Bastien';
-
+require('autoload.php');
 try {
-if (empty($_SESSION['login'])) {
-  header('content-type: text/html; charset=utf-8');
-
-	if (isset($_POST['login'])) {
-		// login and password sent from Form
-
-		$login = (isset($_POST['login'])) ? $_POST['login'] : NULL;
-        $pass = (isset($_POST['password'])) ? $_POST['password'] : NULL;
-        $login= validatorUsername($login);
-        $pass= validatorPassword($pass);
-
-		if (!$login) {
-            throw new Exception('Vérifiez vos identifiants de connexion.'); 
-		}
-
-		if (!$pass) {
-            throw new Exception('Vérifiez vos identifiants de connexion.'); 
-        }
+    $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root','1234512345');
+    }
+    catch(Exception $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+    
+    if (empty($_SESSION['login'])) {
+        header('content-type: text/html; charset=utf-8');
+    }
+    if (isset($_SESSION['login'])) {
+        header('location:ajouterFichier.php');
+    }
+    
+    if (isset($_POST['nom']) AND isset($_POST['password']))  {
+        $pseudo = htmlspecialchars($_POST['nom']);
         
-                // VERIFICATION DES INFOS DANS LA BDD
-                // CODE DE VERIF ICI
-                // LA SUITE EST à MODIFIER EN FONCTION DE LA BDD
-                    if ($data->isDead()) { //
-                    throw new Exception('Vérifiez vos identifiants de connexion.'); 
-                    }
-                    else { 
-                        $data = $data->toArray() [0];
-                        if (password_verify($pass, $rows->{'password'})) {
-                            $_SESSION['login'] = $login;
-                            $_SESSION['name'] = $data->{'name'};
-                            $_SESSION['loggedin_time'] = time();
-                            echo ("<script>setTimeout(function(){location.href ='./index.php'}, 100);</script>");
-                            exit();
-                        }
-                            else {
-                            throw new Exception('Vérifiez vos identifiants de connexion.'); 
-                            }
-                    }	
-                    
-                // FIN MODIF
-            }  
-        }else {
-        echo 'Vous êtes connecté <a href="./bindex.php">Retour à l\'accueil</a>.';
-        $msg = '';
-        echo ("<script>setTimeout(function(){location.href ='./bindex.php'}, 2000);</script>");
-        exit();
-        } 
-    }	
-catch(Exception $e) {
-      $msg=$e->getMessage();
-      $msg= array(sprintf('<div class="alert alert-warning" role="alert">%s</div>',$msg) );  
-}
+        $pass = htmlspecialchars($_POST['password']);
 
+        //  Récupération de l'utilisateur et de son pass hashé
+        $req = $bdd->prepare('SELECT nom, password FROM users WHERE nom = :pseudo');
+        $req->execute(array(
+            'pseudo' => $pseudo));
+        $resultat = $req->fetch();
 
+        // Comparaison du pass envoyé via le formulaire avec la base
+        $isPasswordCorrect = password_verify($_POST['password'], $resultat['password']);
+        
+
+    if (!$resultat)
+    {
+        $msg = "<div class='alert alert-danger' role='alert'> Mauvais identifiant ou mot de passe ! </div>";
+        unset($_POST);
+        header('content-type: text/html; charset=utf-8');
+    }
+    else
+    {
+        if ($isPasswordCorrect) {
+            session_start();
+            $_SESSION['login'] = $pseudo;
+            header('location:ajouterFichier.php');
+        }
+        else {
+            $msg = "<div class='alert alert-danger' role='alert'> Mauvais identifiant ou mot de passe ! </div>";
+            unset($_POST);     
+            header('content-type: text/html; charset=utf-8');  
+        }
+    }
+}  
 ?>
 
-<html>
+<html lang="fr">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -73,8 +61,10 @@ catch(Exception $e) {
     <meta name="author" content="Colorlib">
     <meta name="description" content="#">
     <meta name="keywords" content="#">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="#">
     <!-- Page Title -->
-    <title> Connexion</title>
+    <title>Listing &amp; Directory Website Template</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Google Fonts -->
@@ -85,46 +75,70 @@ catch(Exception $e) {
     <link rel="stylesheet" href="css/themify-icons.css">
     <!-- Hover Effects -->
     <link rel="stylesheet" href="css/set1.css">
+    <!-- Swipper Slider -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-  <body class="bg-dark">
+<body class="bg-dark" >
 
-    <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Connexion</div>
-        <div class="card-body">
-          <form action="" method="post" id="formLogin" >
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="username" name="login"  id="inputUsername" placeholder="Nom d'utilisateur" required="required" autofocus="autofocus">
-                
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password"  name="pass" id="inputPassword" placeholder="Mot de passe" required="required">
-                
-              </div>
-            </div>
-            <a class="btn btn-danger" href="javascript:{}" onclick="document.getElementById('formLogin').submit();">Se connecter</a>
-          </form>
-          <?php 
-                if (!empty($msg)){
-                    foreach($msg as $ms){
-                        echo $ms;   
+
+<div class="container">
+    <div><br></div>
+    <div class="row d-flex justify-content-center">
+        <aside class="col-md-offset-3 col-md-6">
+
+            <div class="card">          
+                <?php
+                    if (!empty($msg)) {
+                        echo $msg;
                     }
                     unset($msg);
-                }
-            ?>
-        </div>
-      </div>
+                ?>
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Connexion</h4>
+                    <hr>
+                    <p class="text-success text-center">Veuillez entrer vos identifiants</p>
+                    <form action="" method="post" id="formLogin">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="nom" class="form-control" placeholder="Nom d'utilisateur" type="nom">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input class="form-control" placeholder="Mot de passe" type="password" name="password">
+                            </div> <!-- input-group.// -->
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger btn-block">Connexion</button>
+                        </div> <!-- form-group// -->
+                            <p class="text-center"><a href="bindex.php" class="btn">Retour à l'accueil</a></p>
+                    </form>
+                </article>
+            </div> <!-- card.// -->
+
+        </aside> <!-- col.// -->
     </div>
+</div> <!-- row.// -->
+<!--container end.//-->
+
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
    
-    
-
-  </body>
+</body>
 
 </html>

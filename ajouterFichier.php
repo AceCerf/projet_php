@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['login'] = "Bastien";
 require('class/GenerateForm.php');
 if (!isset($_SESSION['login'])) {
     header('location:bindex.php');
@@ -106,6 +105,7 @@ if (!isset($_SESSION['login'])) {
                 printf('<div class="row">    
                 <div class="col-md-12">
                     <div class="add-listing-wrap">
+                        <br>
                         <h4>Vous etes connecté en tant que %s</h4>
                         <p>Formulaire d\'ajout de  documents à la base</p>
                     </div>
@@ -129,8 +129,9 @@ if (!isset($_SESSION['login'])) {
     <!--============================= DOCUMENT DETAILS =============================-->
 
     <section class="light-bg">
-    
+        
         <div class="container">
+        <br>
             
                
                     <form action="upload.php" method="POST" enctype='multipart/form-data'>
@@ -145,11 +146,14 @@ if (!isset($_SESSION['login'])) {
                             echo "<p></p>";     
                             //echo $form->submit() . "<br>\n";       
                         ?>  
-                        <div class="reserve-block light-bg"></div>
+                        <br>
+                        <br>
                         <div class="featured-btn-wrap">
                         <button type='submit' class="btn btn-danger" value="Valider">Valider</button>
                         <a href="bindex.php" class="btn btn-danger">Retour à l'accueil</a>
+                        <br>
                     </div>  
+                    
                     </form>
                 
             
