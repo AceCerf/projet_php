@@ -118,7 +118,7 @@ require('autoload.php');
             <div class="row">
                 <div class="col-md-6 responsive-wrap">
                     <div class="booking-checkbox_wrap">
-                        <div class="booking-checkbox">
+                        <div class="booking-checkbox" >
                             
                             <?php
                             try {
@@ -149,7 +149,7 @@ require('autoload.php');
                                 $tab2 = explode('/', $donnees['mime_type']);
                                 $type = current($tab2);
                                 $type = ucfirst($type);
-                                $screen[] = "<li>" . $type ." : <a href='lecturelien.php'>" . $nom ."</a> <pre> Descriptif : ".$donnees['description']."</pre></li>";
+                                $screen[] = "<li>" . $type ." : <a href='detail.php?Mots+Clés=" .$nom ."&type=" .$type . "'>" . $nom ."</a> <pre style='overflow: hidden; text-overflow: ellipsis'> Descriptif : ".$donnees['description']."</pre></li>";
                             }
                             $screen[] = "</ul>";
 
