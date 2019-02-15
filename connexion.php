@@ -13,8 +13,7 @@ catch(Exception $e) {
 }
 
 
-<<<<<<< HEAD
-
+/*
 //test
 
 $reponse = $bdd->query('SELECT * FROM `datas` WHERE 1');
@@ -29,7 +28,7 @@ $reponse->closeCursor();
 //test affivchage image
 $imageTest =$bdd->query("SELECT `chemin_relatif` FROM `datas` WHERE `mime_type`='image/jpeg'");
 while ($donnees = $imageTest->fetch()) {
-    echo "<img src=\".".$donnees['chemin_relatif']."\">";
+    echo "<img src=\"".$donnees['chemin_relatif']."\">";
 }
 
 $imageTest->closeCursor();
@@ -46,20 +45,8 @@ $soundTest->closeCursor();
 $videoTest=$bdd->query("SELECT `chemin_relatif` FROM `datas` WHERE `mime_type`='video/webm'");
 while ($donnees = $videoTest->fetch()) {
     echo '<video width="320" height="240" controls>';
-    echo "<source src=\".".$donnees['chemin_relatif']."\"type=\"video/webm\">";
+    echo "<source src=\"".$donnees['chemin_relatif']."\"type=\"video/webm\">";
     echo "</video>";
 }
     $videoTest->closeCursor();
-=======
-/** 
-*test
-*
-*$reponse = $bdd->query('SELECT * FROM `datas` WHERE 1');
-*
-*while ($donnees = $reponse->fetch()){
-*echo $donnees['id']." : ".$donnees['chemin_relatif']." : ".$donnees['description']."<br/>";
-*}
-*
-*$reponse->closeCursor();
 */
->>>>>>> 14dabf23814aa48fa0544b5b353ff50f256be497
