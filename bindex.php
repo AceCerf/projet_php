@@ -204,7 +204,7 @@ require('autoload.php');
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="featured-btn-wrap">
-                        <a href=".php" class="btn btn-danger"><span class="ti-plus"></span> se connecter</a>
+                        <a href="login.php" class="btn btn-danger"><span class="ti-plus"></span> se connecter</a>
                     </div>
                 </div>
             </div>');                    
