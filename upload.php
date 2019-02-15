@@ -109,13 +109,6 @@ if(isset($_FILES['file']) AND isset($url))
         
          try {
             // Si l'upload a fonctionné on exécute la requete
-            /*echo $url.$file;
-            echo '<br>';
-            echo $type;
-            echo '<br>';
-            echo $description;
-            echo '<br>';
-            echo $id;*/
             $req->execute(array(
             'chemin' => $url.$file,
             'type' => $type,
@@ -127,9 +120,6 @@ if(isset($_FILES['file']) AND isset($url))
             header('location:ajouterFichier.php');      
         }
         catch (Exception $e) {
-            //echo 'Exception reçue : ',  $e->getMessage(), "\n";
-            //die('Erreur : ' . $e->message());
-            
             $_SESSION['message'] = "Erreur lors de l'envoi du fichier : " . $e->message();
             header('location:ajouterFichier.php');
             die();

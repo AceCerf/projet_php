@@ -82,14 +82,29 @@ require('autoload.php');
         </div>
     </div>
     <!--//END HEADER -->
-    <div class="light-bg"></div>
+    <div class="light-bg">
+    <div class="row d-flex justify-content-center">  
+        <div class="col-md-10">
+            <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <?php
+                    $form = new GenerateForm();
+                    $form->inputText('Rechercher dans la base', 'btn-group1');
+                    $form->select('Type', 'btn-group1');
+                    $form->submit();
+                    ?>
+                </div>
+            </form>             
+        </div>            
+    </div>
+    </div>
     
     <!--============================= TITRE DU FICHIER =============================-->
     <section class="reserve-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-offset2">
-                    <h5>TITRE A INSERER</h5>
+                    <h5>Derniers Ajouts</h5>
                 </div>
                 
             </div>
@@ -104,10 +119,49 @@ require('autoload.php');
                 <div class="col-md-6 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            <h4>Description</h4>
-                            <p>description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem id consectetur, voluptas eaque numquam illo sunt doloribus ex cumque officiis deserunt consequatur temporibus molestiae perspiciatis repellendus eum odit sed distinctio?</p>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quisquam similique nihil veritatis ex, quas odio quasi doloremque molestiae quia nulla voluptatibus quod tempora, odit, quae ipsam qui necessitatibus alias!</p>
-                            <hr>
+                            
+                            <?php
+                            try {
+                                $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root','1234512345');
+                            }
+                            catch(Exception $e) {
+                                die('Erreur : '.$e->getMessage());
+                            }
+
+                                if ($_GET['type'] == 'audio') {
+                                    $typeFichier = 'Musique';
+                                } elseif ($_GET['type'] == 'video') {
+                                    $typeFichier = 'Vidéos';
+                                } elseif ($_GET['type'] == 'image') {
+                                    $typeFichier = 'Images';
+                                } elseif ($_GET['type'] == 'all') {
+                                    $typeFichier = 'Toutes Catégories';
+                                }
+
+                                $reponse = $bdd->prepare('SELECT id, chemin_relatif, mime_type, description  FROM datas WHERE mime_type  LIKE ? ORDER BY id DESC LIMIT 10');
+                                $typeLike = ($_GET['type'] == 'all') ? '%' : $_GET['type'] . '%';
+                                $reponse -> execute(array($typeLike));
+                                $screen= [];
+                                $screen[] = "<ul>";
+                                while ($donnees = $reponse->fetch()){
+                                $tab = explode( '/', $donnees['chemin_relatif']);
+                                $nom = end($tab);
+                                $tab2 = explode('/', $donnees['mime_type']);
+                                $type = current($tab2);
+                                $type = ucfirst($type);
+                                $screen[] = "<li>" . $type ." : <a href='lecturelien.php'>" . $nom ."</a> <pre> Descriptif : ".$donnees['description']."</pre></li>";
+                            }
+                            $screen[] = "</ul>";
+
+                            foreach ($screen as $lign) {
+                                echo $lign;
+                            }
+
+
+                            ?>
+
+
+                            
                         </div>
                         
                     </div>
@@ -117,7 +171,13 @@ require('autoload.php');
                 <div class="col-md-6 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            IMAGE ou video ou lecteur audio
+                        <?php
+                            if ($_GET['type'] == 'all') {
+                                $typeFichier = 'Toutes Catégories';
+                            }
+                            echo "<h4>" . $typeFichier . "</h4>";                           
+
+                            ?>
                         </div>
                         
                     </div>
@@ -130,26 +190,9 @@ require('autoload.php');
     </section>
     <!--//END BOOKING DETAILS -->
     <div class="reserve-block light-bg"></div>
-    <div class="reserve-block light-bg"></div>
+    
                                   
-    <div class="row d-flex justify-content-center">
-        
-            
-                <div class="col-md-10">
-                    <form class="form-wrap mt-4 form-row" action="detail.php" method="GET">                                   
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <?php
-                            $form = new GenerateForm();
-                            $form->inputText('Nouvelle Recherche', 'btn-group1');
-                            $form->select('Type', 'btn-group1');
-                            $form->submit();
-            ?>
-                        </div>
-                    </form> 
-                    
-                </div>
-            
-        </div>
+    
 
 
     <!--============================= ADD LISTING =============================-->
