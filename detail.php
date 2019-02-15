@@ -112,7 +112,6 @@ require('autoload.php');
                                     //Research with only keywords
                                     $stmt = $bdd->prepare('SELECT * FROM datas WHERE chemin_relatif LIKE :mots_cles OR description LIKE :mots_cles');
                                     $stmt->bindValue(':mots_cles', "%{$_GET['Mots_Clés']}%");
-
                                     if ($stmt->execute() !== false) {
                                         $res = $stmt->fetchAll();
                                         if ($res[0] !== false) {
@@ -134,7 +133,6 @@ require('autoload.php');
                                     $stmt = $bdd->prepare('SELECT * FROM datas WHERE (chemin_relatif LIKE :mots_cles OR description LIKE :mots_cles) AND UPPER(mime_type) LIKE UPPER(:type)');
                                     $stmt->bindValue(':mots_cles', "%{$_GET['Mots_Clés']}%");
                                     $stmt->bindValue(':type', "{$_GET['type']}%");
-
                                     if ($stmt->execute() !== false) {
                                         $res = $stmt->fetchAll();
                                         if ($res[0] !== false) {
@@ -208,7 +206,7 @@ require('autoload.php');
                             $form->inputText('Nouvelle Recherche', 'btn-group1');
                             $form->select('Type', 'btn-group1');
                             $form->submit();
-            ?>
+                        ?>
                         </div>
                     </form> 
                     

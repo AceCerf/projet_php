@@ -21,7 +21,7 @@ catch(Exception $e) {
 *}
 *
 *$reponse->closeCursor();
-*/ 
+
 //test
 $reponse = $bdd->query('SELECT * FROM `datas` WHERE 1');
 while ($donnees = $reponse->fetch()){
@@ -48,4 +48,4 @@ while ($donnees = $videoTest->fetch()) {
     echo "<source src=\".".$donnees['chemin_relatif']."\"type=\"video/webm\">";
     echo "</video>";
 }
-    $videoTest->closeCursor(); 
+    $videoTest->closeCursor(); */
