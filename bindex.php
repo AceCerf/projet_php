@@ -130,7 +130,7 @@ require('autoload.php');
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                            <a href="detail.php?type=musique"><figure class="effect-ruby">
+                            <a href="typeFichier.php?type=audio"><figure class="effect-ruby">
                                 <img src="images/music.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Musique</h5>
@@ -142,7 +142,7 @@ require('autoload.php');
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                        <a href="detail.php?type=image"><figure class="effect-ruby">
+                        <a href="typeFichier.php?type=image"><figure class="effect-ruby">
                                 <img src="images/image.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Images</h5>
@@ -154,7 +154,7 @@ require('autoload.php');
                 <div class="col-md-4">
                     <div class="find-place-img_wrap">
                         <div class="grid">
-                        <a href="detail.php?type=video"><figure class="effect-ruby">
+                        <a href="typeFichier.php?type=video"><figure class="effect-ruby">
                                 <img src="images/video.jpg" class="img-fluid" alt="img13" />
                                 <figcaption>
                                     <h5>Videos</h5>
