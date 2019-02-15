@@ -89,7 +89,7 @@ require('autoload.php');
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-offset2">
-                    <h5>TITRE A INSERER</h5>
+                    <h5>Résultats</h5>
                 </div>
                 
             </div>
@@ -106,6 +106,9 @@ require('autoload.php');
                         <div class="booking-checkbox">
                             <?php
                             require_once('connexion.php');
+
+                            //a flag who verify the nmber of results
+                            $flag = 0;
                             try { 
                                 if ( isset($_GET['Mots_Clés']) && $_GET['type'] == 'Type de fichier...' ) {
 
@@ -114,12 +117,36 @@ require('autoload.php');
                                     $stmt->bindValue(':mots_cles', "%{$_GET['Mots_Clés']}%");
                                     if ($stmt->execute() !== false) {
                                         $res = $stmt->fetchAll();
-                                        if ($res[0] !== false) {
-                                            echo "<h2>Description</h2>";
-                                            echo "<p>".$res[0]["description"]."</p>";
+
+                                        //verify if we get more than one result or not
+                                        if (sizeof($res) == 1) {
+                                        	    $flag = 1;
+	                                            $tab = explode( '/', $res[0]['chemin_relatif']);
+				                            	$nom = end($tab);
+	                                            echo "<h2>".$nom."</h2>";
+	                                            echo "<p>".$res[0]["description"]."</p>";
+	                                    } elseif (sizeof($res) > 1) {
+	                                    	$flag = 2;
+	            							$screen= [];
+	                            			$screen[] = "<ul>";
+				                            foreach ($res as $donnees){
+				                            $tab = explode( '/', $donnees['chemin_relatif']);
+				                            $nom = end($tab);
+				                            $tab2 = explode('/', $donnees['mime_type']);
+				                            $type = current($tab2);
+				                            $type = ucfirst($type);
+				                            $screen[] = "<li>" . $type ." : <a href='detail.php?Mots+Clés=" .$nom ."&type=" .$type . "'>" . $nom ."</a> <pre style='overflow: hidden; text-overflow: ellipsis'> Descriptif : ".$donnees['description']."</pre></li>";
+				                            }
+				                            $screen[] = "</ul>";
+
+				                            foreach ($screen as $lign) {
+				                                echo $lign;
+				                            }
+	                                    
                                         } else {
-                                            echo "Sorry, we don't have this media\n";
-                                        }
+	                                            echo "Sorry, we don't have this media\n";
+	                                    }
+	                                        
                                     } else {
                                         echo "Research of this media content is failed!\n";
                                     }
@@ -135,9 +162,31 @@ require('autoload.php');
                                     $stmt->bindValue(':type', "{$_GET['type']}%");
                                     if ($stmt->execute() !== false) {
                                         $res = $stmt->fetchAll();
-                                        if ($res[0] !== false) {
-                                            echo "<h2>Description</h2>";
-                                            echo "<p>".$res[0]["description"]."</p>";
+
+                                        //verify if we get more than one result or not
+                                        if (sizeof($res) == 1) {
+                                        	    $flag = 1;
+                                        	    $tab = explode( '/', $res[0]['chemin_relatif']);
+				                            	$nom = end($tab);
+	                                            echo "<h2>".$nom."</h2>";
+	                                            echo "<p>".$res[0]["description"]."</p>";
+	                                    } elseif (sizeof($res) > 1) {
+	                                    	$flag = 2;
+	            							$screen= [];
+	                            			$screen[] = "<ul>";
+				                            foreach ($res as $donnees){
+				                            $tab = explode( '/', $donnees['chemin_relatif']);
+				                            $nom = end($tab);
+				                            $tab2 = explode('/', $donnees['mime_type']);
+				                            $type = current($tab2);
+				                            $type = ucfirst($type);
+				                            $screen[] = "<li>" . $type ." : <a href='detail.php?Mots+Clés=" .$nom ."&type=" .$type . "'>" . $nom ."</a> <pre style='overflow: hidden; text-overflow: ellipsis'> Descriptif : ".$donnees['description']."</pre></li>";
+				                            }
+				                            $screen[] = "</ul>";
+
+				                            foreach ($screen as $lign) {
+				                                echo $lign;
+				                            }
                                         } else {
                                             echo "Sorry, we don't have this media\n";
                                         }
@@ -164,18 +213,16 @@ require('autoload.php');
                         <div class="booking-checkbox">
                             <?php
                                 try {
-
-                                    //verify if table obtained
-                                    if (isset($res[0])) {
-
-                                        //verify the type of content
-                                        if ($res[0]["mime_type"] == "image/png" || $res[0]["mime_type"] == "image/jpeg" || $res[0]["mime_type"] == "image/svg") {
-                                            printf ('<img src="%s" class="img-fluid">', $res[0]["chemin_relatif"]); 
-                                        } elseif ($res[0]["mime_type"] == "audio/ogg") {
-                                            printf ('<audio controls><source src="%s" type="audio/ogg"></audio>', $res[0]["chemin_relatif"]);
-                                        } elseif ($res[0]["mime_type"] == "video/webm") {
-                                            printf ('<video width="320" height="240" controls><source src="%s" type="video/webm"></video>', $res[0]["chemin_relatif"]);
-                                        }
+                                    //verify if table obtained and have only one result
+                                    if ($flag == 1) {
+	                                        //verify the type of content
+	                                        if ($res[0]["mime_type"] == "image/png" || $res[0]["mime_type"] == "image/jpeg" || $res[0]["mime_type"] == "image/svg") {
+	                                            printf ('<img src="%s" class="img-fluid">', $res[0]["chemin_relatif"]); 
+	                                        } elseif ($res[0]["mime_type"] == "audio/ogg") {
+	                                            printf ('<audio controls><source src="%s" type="audio/ogg"></audio>', $res[0]["chemin_relatif"]);
+	                                        } elseif ($res[0]["mime_type"] == "video/webm") {
+	                                            printf ('<video width="320" height="240" controls><source src="%s" type="video/webm"></video>', $res[0]["chemin_relatif"]);
+	                                        }
                                     }
                                 } catch (exception $exep) {
                                     printf("<p>Erreur : %s</p>\n", htmlspecialchars($exep->getMessage()));

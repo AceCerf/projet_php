@@ -142,6 +142,7 @@ if (!isset($_SESSION['login'])) {
                             $form = new GenerateForm();
                             echo "<input type='hidden' name='MAX_FILE_SIZE' value='100000000'>";
                             echo $form->inputFile('img/png, img/jpeg, img/gif, img/svg, audio/ogg, video/web') . "<br>\n";
+                            echo "<p>Description</p>";
                             echo $form->inputTextArea('Description', 'Description') . "<br>\n";   
                             echo "<p></p>";     
                             //echo $form->submit() . "<br>\n";       
