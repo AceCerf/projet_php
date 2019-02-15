@@ -21,7 +21,7 @@ catch(Exception $e) {
 *}
 *
 *$reponse->closeCursor();
-*/ 
+
 //test
 /*
 $reponse = $bdd->query('SELECT * FROM `datas` WHERE 1');

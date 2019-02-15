@@ -22,7 +22,7 @@ class GenerateForm {
     }
     
     public function inputText($name, $className) {
-        printf ("<input class='%s' type='text' placeholder='%s' name='%s' value='%s' required>", $className, $name, $name, $this->getValue($name)) ;
+        printf ("<input class='%s' type='text' placeholder='%s' name='Mots_Clés' value='%s' required>", $className, $name, $this->getValue($name)) ;
     }
 
     public function inputPass($className) {
