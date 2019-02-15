@@ -105,10 +105,57 @@ $_SESSION['login'] = "Bob";
                 <div class="col-md-6 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            <h4>Description</h4>
-                            <p>description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem id consectetur, voluptas eaque numquam illo sunt doloribus ex cumque officiis deserunt consequatur temporibus molestiae perspiciatis repellendus eum odit sed distinctio?</p>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quisquam similique nihil veritatis ex, quas odio quasi doloremque molestiae quia nulla voluptatibus quod tempora, odit, quae ipsam qui necessitatibus alias!</p>
-                            <hr>
+                            <?php
+                            require_once('connexion.php');
+                            try { 
+                                if ( isset($_GET['Mots_Clés']) && $_GET['type'] == 'Type de fichier...' ) {
+
+                                    //Research with only keywords
+                                    $stmt = $bdd->prepare('SELECT * FROM datas WHERE chemin_relatif LIKE :mots_cles OR description LIKE :mots_cles');
+                                    $stmt->bindValue(':mots_cles', "%{$_GET['Mots_Clés']}%");
+
+                                    if ($stmt->execute() !== false) {
+                                        $res = $stmt->fetchAll();
+                                        if ($res[0] !== false) {
+                                            echo "<h2>Description</h2>";
+                                            echo "<p>".$res[0]["description"]."</p>";
+                                        } else {
+                                            echo "Sorry, we don't have this media\n";
+                                        }
+                                    } else {
+                                        echo "Research of this media content is failed!\n";
+                                    }
+
+                                    //deconnect
+                                    $bdd = null;
+
+                                } elseif ( isset($_GET['Mots_Clés']) && $_GET['type'] != 'Type de fichier...' ) {
+
+                                    //Research with keywords and type
+                                    $stmt = $bdd->prepare('SELECT * FROM datas WHERE (chemin_relatif LIKE :mots_cles OR description LIKE :mots_cles) AND UPPER(mime_type) LIKE UPPER(:type)');
+                                    $stmt->bindValue(':mots_cles', "%{$_GET['Mots_Clés']}%");
+                                    $stmt->bindValue(':type', "{$_GET['type']}%");
+
+                                    if ($stmt->execute() !== false) {
+                                        $res = $stmt->fetchAll();
+                                        if ($res[0] !== false) {
+                                            echo "<h2>Description</h2>";
+                                            echo "<p>".$res[0]["description"]."</p>";
+                                        } else {
+                                            echo "Sorry, we don't have this media\n";
+                                        }
+                                    } else {
+                                        echo "Research of this media content is failed!\n";
+                                    }
+
+                                    //deconnect
+                                    $bdd = null;
+
+                                }
+                            } catch (exception $exep) {
+                                printf("<p>Erreur : %s</p>\n", htmlspecialchars($exep->getMessage()));
+                            }
+                            ?>
                         </div>
                         
                     </div>
@@ -118,7 +165,25 @@ $_SESSION['login'] = "Bob";
                 <div class="col-md-6 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            IMAGE ou video ou lecteur audio
+                            <?php
+                                try {
+
+                                    //verify if table obtained
+                                    if (isset($res[0])) {
+
+                                        //verify the type of content
+                                        if ($res[0]["mime_type"] == "image/png" || $res[0]["mime_type"] == "image/jpeg" || $res[0]["mime_type"] == "image/svg") {
+                                            printf ('<img src="%s" class="img-fluid">', $res[0]["chemin_relatif"]); 
+                                        } elseif ($res[0]["mime_type"] == "audio/ogg") {
+                                            printf ('<audio controls><source src="%s" type="audio/ogg"></audio>', $res[0]["chemin_relatif"]);
+                                        } elseif ($res[0]["mime_type"] == "video/webm") {
+                                            printf ('<video width="320" height="240" controls><source src="%s" type="video/webm"></video>', $res[0]["chemin_relatif"]);
+                                        }
+                                    }
+                                } catch (exception $exep) {
+                                    printf("<p>Erreur : %s</p>\n", htmlspecialchars($exep->getMessage()));
+                                }
+                            ?>
                         </div>
                         
                     </div>
