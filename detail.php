@@ -3,7 +3,7 @@ session_start();
 require('autoload.php');
 ?>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- Required meta tags -->
@@ -42,14 +42,14 @@ require('autoload.php');
             <div class="row">
                 <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="bindex.php">Médiathèque</a>
+                            <a class="navbar-brand" href="index.php">Médiathèque</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-menu"></span>
                             </button>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="bindex.php">Accueil</a>
+                                    <a class="nav-link" href="index.php">Accueil</a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="typeFichier.php?type=audio">Musique</a>
@@ -126,6 +126,7 @@ require('autoload.php');
 	                                            echo "<h2>".$nom."</h2>";
 	                                            echo "<p>".$res[0]["description"]."</p>";
 	                                    } elseif (sizeof($res) > 1) {
+                                            echo "<p>Plusieurs résultast trouvés, veuillez choisir : </p>";
 	                                    	$flag = 2;
 	            							$screen= [];
 	                            			$screen[] = "<ul>";
@@ -144,11 +145,11 @@ require('autoload.php');
 				                            }
 	                                    
                                         } else {
-	                                            echo "Sorry, we don't have this media\n";
+	                                            echo "Aucun résultat trouvé\n";
 	                                    }
 	                                        
                                     } else {
-                                        echo "Research of this media content is failed!\n";
+                                        echo "Aucun résultat trouvé\n";
                                     }
 
                                     //deconnect
@@ -188,10 +189,10 @@ require('autoload.php');
 				                                echo $lign;
 				                            }
                                         } else {
-                                            echo "Sorry, we don't have this media\n";
+                                            echo "Aucun résultat trouvé\n";
                                         }
                                     } else {
-                                        echo "Research of this media content is failed!\n";
+                                        echo "Aucun résultat trouvé\n";
                                     }
 
                                     //deconnect
@@ -317,7 +318,7 @@ require('autoload.php');
             <div class="row">
                 <div class="col-md-12">
                     <div class="copyright">                        
-                        <p>Copyright &copy; 2019 LDNR's students </p>          
+                        <p>Copyright &copy; 2019 TCBG </p>          
                     </div>
                 </div>
             </div>

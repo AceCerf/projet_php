@@ -122,7 +122,7 @@ try {
                         <div class="form-group">
                             <button type="submit" class="btn btn-danger btn-block">Connexion</button>
                         </div> <!-- form-group// -->
-                            <p class="text-center"><a href="bindex.php" class="btn">Retour à l'accueil</a></p>
+                            <p class="text-center"><a href="index.php" class="btn">Retour à l'accueil</a></p>
                     </form>
                 </article>
             </div> <!-- card.// -->
