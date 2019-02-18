@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 15 Février 2019 à 13:16
+-- Généré le :  Lun 18 Février 2019 à 10:32
 -- Version du serveur :  10.1.26-MariaDB-0+deb9u1
 -- Version de PHP :  7.0.30-0+deb9u1
 
@@ -45,17 +45,10 @@ INSERT INTO `datas` (`id`, `chemin_relatif`, `mime_type`, `description`, `auteur
 (3, 'multimedia/images/kenny.gif', 'image/gif', 'Lui c\'est sur ils vont le tuer ', 3, '2019-02-12'),
 (4, 'multimedia/images/homer.svg', 'image/svg+xml', 'Faut-il encore le présenter ? celui qui est capable de lire ce qui est écrit sur un gâteau rien qu\'à l\'odeur.', 4, '2019-02-12'),
 (5, 'multimedia/audio/CouldYouBeLoved.ogg', 'audio/ogg', 'Titre de la légende du regage', 1, '2019-02-12'),
-(6, 'multimedia/images/blasé.jpg', 'image/jpeg', 'Non mais des fois il y en a qui devraient décoller leurs yeux du téléphone !', 1, '2019-02-14'),
 (7, 'multimedia/images/parapente.jpg', 'image/jpeg', 'Petit vol haut en couleur.', 1, '2019-02-14'),
-(8, 'multimedia/images/bonnedouche.jpg', 'image/jpeg', 'Des fois une bonne douche ca fait du bien, mais pas n\'importe ou !', 1, '2019-02-14'),
-(13, 'multimedia/images/chanceux.jpg', 'image/jpeg', 'C\'est important de bien arroser les plantes', 1, '2019-02-14'),
 (14, 'multimedia/audio/Clover.ogg', 'audio/ogg', 'Un titre de King\'s Parade', 1, '2019-02-14'),
 (15, 'multimedia/videos/idees.webm', 'video/webm', 'Toujours de bonnes idées à prendre', 1, '2019-02-14'),
-(16, 'multimedia/videos/crack_de_cadenas.webm', 'video/webm', 'Petit tuto pour Escape game', 1, '2019-02-14'),
-(17, 'multimedia/images/souplesse.jpg', 'image/jpeg', 'La souplesse ultime', 1, '2019-02-14'),
-(18, 'multimedia/images/souplesse.jpg', 'image/jpeg', 'La souplesse ultime', 1, '2019-02-14'),
-(19, 'multimedia/images/vilainecoquine.jpg', 'image/jpeg', 'pret pour une soirée déguisée ?', 1, '2019-02-14'),
-(20, 'multimedia/images/toilette.jpg', 'image/jpeg', 'quand ca presse !', 1, '2019-02-15'),
+(16, 'multimedia/videos/crack-de-cadenas.webm', 'video/webm', 'Petit tuto pour Escape game', 1, '2019-02-14'),
 (21, 'multimedia/images/moustache.jpg', 'image/jpeg', 'Tiens tu te laisse poustache ?', 1, '2019-02-15'),
 (27, 'multimedia/images/sable.jpg', 'image/jpeg', 'C\'est beau !', 4, '2019-02-15');
 

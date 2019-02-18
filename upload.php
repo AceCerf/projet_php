@@ -1,12 +1,7 @@
 <?php
 session_start();
-
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '1234512345');
-}
-catch (Exception $e) {
-    die('Erreur : ' . $e->message());
-}
+require('autoload.php');
+require_once('connexion.php');
 
 // Récupérer le login dans la session
 $auteur = $_SESSION['login'];

@@ -1,11 +1,6 @@
 <?php
 require('autoload.php');
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root','1234512345');
-    }
-    catch(Exception $e) {
-        die('Erreur : '.$e->getMessage());
-    }
+require_once('connexion.php');
     
     if (empty($_SESSION['login'])) {
         header('content-type: text/html; charset=utf-8');
@@ -132,8 +127,6 @@ try {
 </div> <!-- row.// -->
 <!--container end.//-->
 
-    <!-- jQuery, Bootstrap JS. -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

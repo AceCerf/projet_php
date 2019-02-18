@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('autoload.php');
+require_once('connexion.php');
 ?>
 
 <html lang="fr">
@@ -105,8 +106,7 @@ require('autoload.php');
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
                             <?php
-                            require_once('connexion.php');
-
+                            
                             //a flag who verify the nmber of results
                             $flag = 0;
                             try { 
@@ -217,7 +217,7 @@ require('autoload.php');
                                     //verify if table obtained and have only one result
                                     if ($flag == 1) {
 	                                        //verify the type of content
-	                                        if ($res[0]["mime_type"] == "image/png" || $res[0]["mime_type"] == "image/jpeg" || $res[0]["mime_type"] == "image/svg") {
+	                                        if ($res[0]["mime_type"] == "image/png" || $res[0]["mime_type"] == "image/jpeg" || $res[0]["mime_type"] == "image/svg+xml" || $res[0]["mime_type"] == "image/gif") {
 	                                            printf ('<img src="%s" class="img-fluid">', $res[0]["chemin_relatif"]); 
 	                                        } elseif ($res[0]["mime_type"] == "audio/ogg") {
 	                                            printf ('<audio controls><source src="%s" type="audio/ogg"></audio>', $res[0]["chemin_relatif"]);
